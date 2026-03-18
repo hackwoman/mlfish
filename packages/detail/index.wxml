@@ -1,0 +1,198 @@
+<!--detail.wxml-->
+<view class="detail">
+  <!-- 封面图 -->
+  <view class="cover" style="background: {{activity.coverColor}};">
+    <text class="cover-icon">{{activity.icon}}</text>
+  </view>
+  
+  <!-- 基本信息 -->
+  <view class="card info-card">
+    <view class="activity-title">{{activity.title}}</view>
+    <view class="activity-subtitle">{{activity.subtitle}}</view>
+    
+    <!-- 活动描述 -->
+    <view class="activity-description" wx:if="{{activity.description}}">
+      <view class="desc-label">活动安排</view>
+      <view class="desc-content {{activity.description === '待定' ? 'text-warning' : ''}}">{{activity.description}}</view>
+    </view>
+    
+    <view class="info-row">
+      <text class="info-label">📅</text>
+      <text>{{activity.dateText}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">📍</text>
+      <text>{{activity.location}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">⏰</text>
+      <text>{{activity.time}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">👥</text>
+      <text class="{{activity.current >= activity.minPeople ? 'text-success' : 'text-warning'}}">
+        {{activity.current}}/{{activity.max}}人（最低4人成行）
+      </text>
+    </view>
+    
+    <!-- 会员价格 -->
+    <view class="price-row" wx:if="{{memberLevel > 0}}">
+      <text class="price-label">💰 会员价</text>
+      <view class="price-info">
+        <text class="original-price">¥{{activity.basePrice}}</text>
+        <text class="vip-price">¥{{activity.price}}</text>
+        <text class="discount-tag">{{discountText}}</text>
+      </view>
+    </view>
+    
+    <!-- 非会员价格 -->
+    <view class="price-row" wx:else>
+      <text class="price-label">💰 活动费用</text>
+      <text class="price-value">¥{{activity.price}}</text>
+    </view>
+    
+    <!-- 成行状态 -->
+    <view class="status-badge {{activity.statusClass}}">
+      {{activity.statusText}}
+    </view>
+  </view>
+
+  <!-- 已预约成员 -->
+  <view class="card">
+    <view class="section-title">👥 已预约成员</view>
+    <view class="members-list">
+      <block wx:for="{{activity.members}}" wx:key="id">
+        <view class="member-item">
+          <image class="member-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+          <view class="member-info">
+            <view class="member-name">{{item.name}}</view>
+            <view class="member-time">预约于 {{item.bookTime}}</view>
+          </view>
+          <view class="member-status {{item.statusClass}}">{{item.statusText}}</view>
+        </view>
+      </block>
+      
+      <view class="empty-members" wx:if="{{activity.members.length === 0}}">
+        <text>暂无预约，快来抢先吧！</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 钓点信息 -->
+  <view class="card">
+    <view class="section-title">🎣 钓点信息</view>
+    <view class="spot-info">
+      <view class="spot-name">📍 {{activity.spot.name}}</view>
+      <view class="spot-desc">{{activity.spot.desc}}</view>
+      <view class="spot-distance">距东山码头约 {{activity.spot.distance}} 分钟船程</view>
+    </view>
+  </view>
+
+  <!-- 鱼种和钓法 -->
+  <view class="card">
+    <view class="section-title">🐟 目标鱼种 & 钓法</view>
+    <view class="fish-section">
+      <view class="fish-tags">
+        <block wx:for="{{activity.fishSpecies}}" wx:key="*this">
+          <text class="fish-tag">{{item}}</text>
+        </block>
+      </view>
+      <view class="fishing-tips">
+        <view class="tips-title">💡 钓法提示：</view>
+        <view class="tips-content">{{activity.fishingTips}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 费用说明 -->
+  <view class="card">
+    <view class="section-title">💰 费用说明</view>
+    <view class="price-section">
+      <text class="price-label">活动费用</text>
+      <text class="price-value">¥{{activity.price}}</text>
+    </view>
+    <view class="fee-list">
+      <view class="fee-item included">
+        <text>✓</text>
+        <text>船只租赁费用</text>
+      </view>
+      <view class="fee-item included">
+        <text>✓</text>
+        <text>钓具使用（鱼竿、鱼饵）</text>
+      </view>
+      <view class="fee-item included">
+        <text>✓</text>
+        <text>救生衣租赁</text>
+      </view>
+      <view class="fee-item excluded">
+        <text>✗</text>
+        <text>餐食自理</text>
+      </view>
+      <view class="fee-item excluded">
+        <text>✗</text>
+        <text>个人消费</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 行程安排 -->
+  <view class="card">
+    <view class="section-title">📋 行程安排</view>
+    <view class="schedule-list">
+      <block wx:for="{{activity.schedule}}" wx:key="time">
+        <view class="schedule-item">
+          <view class="schedule-time">{{item.time}}</view>
+          <view class="schedule-content">{{item.content}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 注意事项 -->
+  <view class="card notice-card">
+    <view class="notice-title">⚠️ 注意事项</view>
+    <view class="notice-list">
+      <view>1. 请携带身份证出海</view>
+      <view>2. 建议自带防晒帽、防晒霜</view>
+      <view>3. 容易晕船者请提前服用晕船药</view>
+      <view>4. 保护环境，不乱丢垃圾</view>
+      <view>5. 服从船长指挥，注意安全</view>
+    </view>
+  </view>
+
+  <!-- 成行提醒 -->
+  <view class="card tip-card">
+    <text class="tip-icon">💡</text>
+    <text>最低成行{{activity.minPeople}}人，如人数不足将提前24小时通知并退款</text>
+  </view>
+
+  <!-- 底部占位 -->
+  <view class="bottom-space"></view>
+</view>
+
+<!-- 底部按钮 -->
+<view class="bottom-bar">
+  <view class="contact-btn" bindtap="contact">
+    <text>📞</text>
+    <text>咨询</text>
+  </view>
+  
+  <!-- 未预约 -->
+  <view wx:if="{{!hasBooked && activity.status !== 'full'}}" 
+        class="book-btn" 
+        bindtap="bookActivity">
+    立即预约 ¥{{activity.price}}
+  </view>
+  
+  <!-- 已预约 -->
+  <view wx:elif="{{hasBooked}}" 
+        class="cancel-btn" 
+        bindtap="cancelBooking">
+    取消预约
+  </view>
+  
+  <!-- 已满员 -->
+  <view wx:else class="book-btn disabled">
+    已满员
+  </view>
+</view>

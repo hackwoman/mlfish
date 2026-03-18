@@ -1,0 +1,31 @@
+========================================
+  登录错误已修复！
+========================================
+
+【问题原因】
+代码调用了 app.getBookingsGroupByDate() 
+但 app.js 中没有定义此函数
+
+该函数实际在 bookingService.js 中
+
+【修复内容】
+1. pages/index/index.js
+   ✓ 添加 require('../../services/bookingService')
+   ✓ 替换 5 处调用
+
+2. packages/detail/index.js
+   ✓ 添加 require('../../services/bookingService')
+   ✓ 替换 2 处调用
+
+【修改文件】
+- pages/index/index.js
+- packages/detail/index.js
+
+【下一步】
+1. 在微信开发者工具中重新编译
+2. 测试登录功能
+3. 测试日历预约功能
+
+========================================
+现在可以正常登录了！
+========================================

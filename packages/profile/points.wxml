@@ -1,0 +1,63 @@
+<!--points.wxml-->
+<view class="container">
+  <!-- 积分卡片 -->
+  <view class="points-card">
+    <view class="points-label">当前积分</view>
+    <view class="points-value">{{points}}</view>
+    <view class="points-tip">积分可兑换礼品或抵扣活动费用</view>
+  </view>
+
+  <!-- 积分规则 -->
+  <view class="card">
+    <view class="card-title">📖 积分规则</view>
+    <view class="rules">
+      <view class="rule-item">
+        <view class="rule-action">报名参加活动</view>
+        <view class="rule-points">+100 积分</view>
+      </view>
+      <view class="rule-item">
+        <view class="rule-action">活动完成</view>
+        <view class="rule-points">+50 积分</view>
+      </view>
+      <view class="rule-item">
+        <view class="rule-action">邀请好友</view>
+        <view class="rule-points">+200 积分</view>
+      </view>
+      <view class="rule-item">
+        <view class="rule-action">签到</view>
+        <view class="rule-points">+10 积分/天</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 兑换礼品 -->
+  <view class="card">
+    <view class="card-title">🎁 积分兑换</view>
+    <view class="gifts">
+      <block wx:for="{{gifts}}" wx:key="id">
+        <view class="gift-item">
+          <view class="gift-icon">{{item.icon}}</view>
+          <view class="gift-name">{{item.name}}</view>
+          <view class="gift-points">{{item.points}} 积分</view>
+          <view class="gift-btn" bindtap="exchange" data-id="{{item.id}}">兑换</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 积分记录 -->
+  <view class="card">
+    <view class="card-title">📋 积分记录</view>
+    <view class="records">
+      <block wx:for="{{records}}" wx:key="id">
+        <view class="record-item">
+          <view class="record-info">
+            <view class="record-action">{{item.action}}</view>
+            <view class="record-date">{{item.date}}</view>
+          </view>
+          <view class="record-points {{item.type}}">{{item.type==='add'?'+':'-'}}{{item.points}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

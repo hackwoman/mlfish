@@ -1,0 +1,434 @@
+/* admin.wxss */
+
+.admin-container {
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+/* 标签栏 */
+.tab-bar {
+  display: flex;
+  background: #fff;
+  border-bottom: 1rpx solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 30rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  position: relative;
+}
+
+.tab-item.active {
+  color: #159895;
+  font-weight: 600;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 4rpx;
+  background: #159895;
+  border-radius: 2rpx;
+}
+
+/* 内容区 */
+.tab-content {
+  padding: 30rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.btn-add {
+  background: #159895;
+  color: #fff;
+  font-size: 26rpx;
+  padding: 15rpx 30rpx;
+  border-radius: 30rpx;
+}
+
+/* 模板列表 */
+.template-list {
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.template-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.template-item:last-child {
+  border-bottom: none;
+}
+
+.template-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.template-desc {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 8rpx;
+}
+
+.template-meta {
+  font-size: 24rpx;
+  color: #159895;
+  margin-top: 8rpx;
+}
+
+.template-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.action-btn {
+  font-size: 26rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+}
+
+.action-btn.edit {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.action-btn.delete {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* 会员列表 */
+.member-list {
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.member-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.member-item:last-child {
+  border-bottom: none;
+}
+
+.member-info {
+  flex: 1;
+}
+
+.member-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.member-phone {
+  font-size: 26rpx;
+  color: #666;
+  margin-top: 8rpx;
+}
+
+.member-meta {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.member-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10rpx;
+}
+
+.member-level {
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.member-level.level-0 {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.member-level.level-1 {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.member-level.level-2 {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.level-desc {
+  margin-top: 30rpx;
+  padding: 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+}
+
+.desc-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15rpx;
+}
+
+.desc-item {
+  font-size: 26rpx;
+  color: #666;
+  padding: 10rpx 0;
+}
+
+/* 预约日志 */
+.log-list {
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.log-item {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.log-date {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.log-activity {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #159895;
+  margin-bottom: 8rpx;
+}
+
+.log-desc {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 15rpx;
+}
+
+.log-meta {
+  display: flex;
+  gap: 20rpx;
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 15rpx;
+}
+
+.log-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.status-tag {
+  padding: 8rpx 16rpx;
+  border-radius: 10rpx;
+  font-size: 22rpx;
+}
+
+.status-tag.tag-warning {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.status-tag.tag-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-tag.tag-info {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+/* 行程列表 */
+.trip-list {
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.trip-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.trip-item:last-child {
+  border-bottom: none;
+}
+
+.trip-date {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.trip-meta {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 8rpx;
+}
+
+.trip-actions {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.status-tag {
+  padding: 8rpx 16rpx;
+  border-radius: 10rpx;
+  font-size: 22rpx;
+}
+
+.status-tag.ongoing {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-tag.completed {
+  background: #f5f5f5;
+  color: #999;
+}
+
+/* 空提示 */
+.empty-tip {
+  text-align: center;
+  padding: 60rpx;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 弹窗 */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-height: 80vh;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  z-index: 101;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.modal-close {
+  font-size: 40rpx;
+  color: #999;
+  padding: 10rpx;
+}
+
+.form-item {
+  margin-bottom: 30rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 15rpx;
+}
+
+.form-input {
+  width: 100%;
+  height: 80rpx;
+  background: #f5f5f5;
+  border-radius: 10rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 150rpx;
+  background: #f5f5f5;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+}
+
+.btn-save {
+  background: #159895;
+  color: #fff;
+  border-radius: 44rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+}

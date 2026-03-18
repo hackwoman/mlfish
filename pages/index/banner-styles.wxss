@@ -1,0 +1,342 @@
+/* ===== Banner 漫画风格场景 ===== */
+
+.banner {
+  position: relative;
+  height: 400rpx;
+  overflow: hidden;
+}
+
+.banner-swiper {
+  height: 100%;
+}
+
+.banner-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 天空渐变 */
+.sky {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 100%);
+}
+
+/* 太阳 */
+.sun {
+  position: absolute;
+  top: 40rpx;
+  right: 60rpx;
+  width: 80rpx;
+  height: 80rpx;
+  background: radial-gradient(circle, #FFD700 0%, #FFA500 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 40rpx rgba(255, 215, 0, 0.6);
+  animation: sunPulse 3s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.9; }
+}
+
+/* 云朵 */
+.clouds {
+  position: absolute;
+  top: 60rpx;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+}
+
+.cloud {
+  position: absolute;
+  background: #fff;
+  border-radius: 50rpx;
+  animation: cloudFloat 20s linear infinite;
+}
+
+.cloud::before, .cloud::after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.cloud-1 {
+  width: 120rpx;
+  height: 40rpx;
+  top: 0;
+  left: -120rpx;
+}
+.cloud-1::before {
+  width: 50rpx;
+  height: 50rpx;
+  top: -25rpx;
+  left: 20rpx;
+}
+.cloud-1::after {
+  width: 40rpx;
+  height: 40rpx;
+  top: -15rpx;
+  left: 50rpx;
+}
+
+.cloud-2 {
+  width: 100rpx;
+  height: 35rpx;
+  top: 30rpx;
+  left: -100rpx;
+  animation-delay: 7s;
+}
+.cloud-2::before {
+  width: 40rpx;
+  height: 40rpx;
+  top: -20rpx;
+  left: 15rpx;
+}
+.cloud-2::after {
+  width: 35rpx;
+  height: 35rpx;
+  top: -12rpx;
+  left: 40rpx;
+}
+
+.cloud-3 {
+  width: 140rpx;
+  height: 45rpx;
+  top: 10rpx;
+  left: -140rpx;
+  animation-delay: 14s;
+}
+.cloud-3::before {
+  width: 60rpx;
+  height: 60rpx;
+  top: -30rpx;
+  left: 25rpx;
+}
+.cloud-3::after {
+  width: 50rpx;
+  height: 50rpx;
+  top: -20rpx;
+  left: 60rpx;
+}
+
+@keyframes cloudFloat {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(900rpx); }
+}
+
+/* 海面 */
+.sea {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45%;
+  background: linear-gradient(180deg, #159895 0%, #0D5C5A 100%);
+  overflow: hidden;
+}
+
+.wave {
+  position: absolute;
+  width: 200%;
+  height: 30rpx;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60'%3E%3Cpath d='M0,30 Q150,60 300,30 T600,30 T900,30 T1200,30 L1200,60 L0,60 Z' fill='rgba(255,255,255,0.3)'/%3E%3C/svg%3E");
+  background-size: 600rpx 30rpx;
+  animation: waveMove 3s linear infinite;
+  opacity: 0.6;
+}
+
+.wave-1 { bottom: 120rpx; animation-duration: 3s; }
+.wave-2 { bottom: 90rpx; animation-duration: 4s; opacity: 0.4; }
+.wave-3 { bottom: 60rpx; animation-duration: 5s; opacity: 0.3; }
+
+@keyframes waveMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-300rpx); }
+}
+
+/* 渔船 */
+.boat {
+  position: absolute;
+  bottom: 100rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: boatFloat 2s ease-in-out infinite;
+}
+
+@keyframes boatFloat {
+  0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+  50% { transform: translateX(-50%) translateY(-10rpx) rotate(2deg); }
+}
+
+.boat-hull {
+  width: 200rpx;
+  height: 50rpx;
+  background: linear-gradient(180deg, #8B4513 0%, #654321 100%);
+  border-radius: 0 0 100rpx 100rpx;
+  position: relative;
+}
+
+.boat-hull::before {
+  content: '';
+  position: absolute;
+  top: -30rpx;
+  left: 20rpx;
+  width: 160rpx;
+  height: 40rpx;
+  background: linear-gradient(180deg, #DEB887 0%, #D2691E 100%);
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+.boat-cabin {
+  position: absolute;
+  bottom: 50rpx;
+  left: 50rpx;
+  width: 60rpx;
+  height: 50rpx;
+  background: linear-gradient(180deg, #FF6B6B 0%, #C92A2A 100%);
+  border-radius: 10rpx;
+}
+
+.boat-cabin::before {
+  content: '';
+  position: absolute;
+  top: 10rpx;
+  left: 10rpx;
+  width: 20rpx;
+  height: 20rpx;
+  background: #87CEEB;
+  border-radius: 5rpx;
+}
+
+.boat-flag {
+  position: absolute;
+  bottom: 100rpx;
+  left: 50%;
+  width: 4rpx;
+  height: 80rpx;
+  background: #654321;
+}
+
+.boat-flag::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -40rpx;
+  border-left: 40rpx solid #FF6B6B;
+  border-top: 20rpx solid transparent;
+  border-bottom: 20rpx solid transparent;
+  animation: flagFlutter 1s ease-in-out infinite;
+}
+
+@keyframes flagFlutter {
+  0%, 100% { transform: skewY(0deg); }
+  50% { transform: skewY(5deg); }
+}
+
+/* 钓鱼元素 */
+.fishing {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.fishing-rod {
+  position: absolute;
+  bottom: 150rpx;
+  right: 100rpx;
+  width: 4rpx;
+  height: 120rpx;
+  background: #654321;
+  transform: rotate(-15deg);
+  transform-origin: bottom center;
+}
+
+.fishing-line {
+  position: absolute;
+  bottom: 100rpx;
+  right: 80rpx;
+  width: 2rpx;
+  height: 100rpx;
+  background: linear-gradient(180deg, rgba(255,255,255,0.8), transparent);
+  animation: lineSway 2s ease-in-out infinite;
+}
+
+@keyframes lineSway {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.fish {
+  position: absolute;
+  width: 40rpx;
+  height: 20rpx;
+  background: linear-gradient(90deg, #FFA500 0%, #FF6B6B 100%);
+  border-radius: 50%;
+  animation: fishSwim 4s ease-in-out infinite;
+}
+
+.fish::before {
+  content: '';
+  position: absolute;
+  right: -15rpx;
+  top: 5rpx;
+  border-left: 15rpx solid #FF6B6B;
+  border-top: 10rpx solid transparent;
+  border-bottom: 10rpx solid transparent;
+}
+
+.fish-1 {
+  bottom: 80rpx;
+  left: -40rpx;
+  animation-delay: 0s;
+}
+
+.fish-2 {
+  bottom: 50rpx;
+  left: -40rpx;
+  animation-delay: 2s;
+}
+
+@keyframes fishSwim {
+  0% { transform: translateX(0) scaleX(1); }
+  50% { transform: translateX(400rpx) scaleX(1); }
+  51% { transform: translateX(400rpx) scaleX(-1); }
+  100% { transform: translateX(0) scaleX(-1); }
+}
+
+/* Banner 文字层 */
+.banner-overlay {
+  position: absolute;
+  bottom: 40rpx;
+  left: 40rpx;
+  right: 40rpx;
+  z-index: 10;
+}
+
+.banner-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+  filter: drop-shadow(0 4rpx 8rpx rgba(0,0,0,0.3));
+}
+
+.banner-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 4rpx 8rpx rgba(0,0,0,0.4);
+  margin-bottom: 12rpx;
+}
+
+.banner-subtitle {
+  font-size: 26rpx;
+  color: rgba(255,255,255,0.95);
+  text-shadow: 0 2rpx 4rpx rgba(0,0,0,0.4);
+}

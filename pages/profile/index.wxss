@@ -1,0 +1,375 @@
+/* profile.wxss */
+
+.profile {
+  padding: 30rpx;
+}
+
+/* 用户卡片 */
+.user-card {
+  background: #159895;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  margin-bottom: 20rpx;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255,255,255,0.5);
+  margin-right: 25rpx;
+}
+
+.avatar-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.user-detail {
+  flex: 1;
+}
+
+.nickname {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10rpx;
+}
+
+.member-level {
+  display: flex;
+}
+
+.level-badge {
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+}
+
+.level-1 { background: #78909c; }  /* 银 */
+.level-2 { background: #f5a623; }  /* 金 */
+.level-3 { background: #333; }     /* 黑 */
+
+/* 统计卡片 */
+.stats-card {
+  display: flex;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx 0;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.06);
+}
+
+.stats-item {
+  flex: 1;
+  text-align: center;
+  border-right: 1rpx solid #f0f0f0;
+}
+
+.stats-item:last-child {
+  border-right: none;
+}
+
+.stats-value {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #159895;
+  margin-bottom: 8rpx;
+}
+
+.stats-label {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 会员权益 */
+.benefit-card {
+  margin-bottom: 20rpx;
+}
+
+.card-header {
+  margin-bottom: 20rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.benefit-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 12rpx 20rpx;
+  background: #f8f9fa;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 菜单 */
+.menu-card {
+  padding: 0;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  font-size: 36rpx;
+  margin-right: 20rpx;
+}
+
+.menu-arrow {
+  color: #ccc;
+  font-size: 28rpx;
+}
+
+/* 管理员 */
+.admin-card {
+  margin-top: 20rpx;
+}
+
+/* 版本 */
+.version {
+  text-align: center;
+  padding: 40rpx 0;
+  font-size: 22rpx;
+  color: #ccc;
+}
+
+/* 用户信息栏 */
+.user-info-bar {
+  display: flex;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.info-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-item .info-label {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.info-item .info-value {
+  font-size: 26rpx;
+  color: #333;
+  margin-top: 6rpx;
+}
+
+.info-item .info-value.level-1 {
+  color: #1976d2;
+}
+
+.info-item .info-value.level-2 {
+  color: #f57c00;
+}
+
+/* 未登录提示 */
+.not-login-tip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff3e0;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.tip-icon {
+  font-size: 32rpx;
+  margin-right: 10rpx;
+}
+
+.tip-text {
+  font-size: 24rpx;
+  color: #f57c00;
+}
+
+/* 禁用菜单 */
+.menu-item.disabled {
+  opacity: 0.5;
+}
+
+/* ========== 登录弹窗 ========== */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+}
+
+.login-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  background: #fff;
+  border-radius: 30rpx;
+  padding: 50rpx 40rpx;
+  z-index: 101;
+}
+
+.login-modal .modal-header {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.login-modal .modal-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #159895;
+  margin-bottom: 10rpx;
+}
+
+.login-modal .modal-subtitle {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 登录/注册模式切换 */
+.mode-switch {
+  display: flex;
+  background: #f5f5f5;
+  border-radius: 16rpx;
+  padding: 6rpx;
+  margin-bottom: 40rpx;
+}
+
+.mode-item {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  border-radius: 12rpx;
+  transition: all 0.3s;
+}
+
+.mode-item.active {
+  background: #159895;
+  color: #fff;
+  font-weight: 600;
+}
+
+.login-modal .form-item {
+  margin-bottom: 30rpx;
+}
+
+.login-modal .form-label {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 12rpx;
+}
+
+.login-modal .form-input {
+  width: 100%;
+  height: 88rpx;
+  background: #f5f5f5;
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+}
+
+.login-benefit {
+  background: #f0f9f8;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 30rpx;
+}
+
+.login-benefit .benefit-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #159895;
+  margin-bottom: 12rpx;
+}
+
+.login-benefit .benefit-item {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.8;
+}
+
+.btn-login {
+  width: 100%;
+  height: 96rpx;
+  background: linear-gradient(135deg, #159895, #1a7a74);
+  border-radius: 48rpx;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 600;
+  line-height: 96rpx;
+}
+
+.forgot-link {
+  text-align: center;
+  color: #159895;
+  font-size: 26rpx;
+  margin-top: 20rpx;
+  text-decoration: underline;
+}
+
+.login-tip-bottom {
+  text-align: center;
+  font-size: 22rpx;
+  color: #ccc;
+  margin-top: 20rpx;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  font-size: 40rpx;
+  color: #999;
+}
+
+.login-tip {
+  font-size: 22rpx;
+  color: rgba(255,255,255,0.7);
+}
+
+.user-arrow {
+  color: rgba(255,255,255,0.5);
+  font-size: 32rpx;
+}

@@ -1,0 +1,35 @@
+<!--bookings.wxml-->
+<view class="container">
+  <view class="tabs">
+    <view class="tab {{currentTab==0?'active':''}}" bindtap="switchTab" data-idx="0">全部</view>
+    <view class="tab {{currentTab==1?'active':''}}" bindtap="switchTab" data-idx="1">待出行</view>
+    <view class="tab {{currentTab==2?'active':''}}" bindtap="switchTab" data-idx="2">已完成</view>
+    <view class="tab {{currentTab==3?'active':''}}" bindtap="switchTab" data-idx="3">已取消</view>
+  </view>
+
+  <view class="booking-list">
+    <block wx:for="{{bookings}}" wx:key="id">
+      <view class="booking-card">
+        <view class="booking-header">
+          <text class="booking-title">{{item.title}}</text>
+          <text class="booking-status {{item.statusClass}}">{{item.statusText}}</text>
+        </view>
+        <view class="booking-info">
+          <text>📅 {{item.date}}</text>
+          <text>👥 {{item.people}}人</text>
+        </view>
+        <view class="booking-footer">
+          <text class="price">¥{{item.price}}</text>
+          <view class="booking-actions">
+            <view class="btn-secondary" wx:if="{{item.status==1}}" bindtap="cancel" data-id="{{item.id}}">取消</view>
+            <view class="btn-primary" wx:if="{{item.status==2}}">查看详情</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    
+    <view class="empty" wx:if="{{bookings.length==0}}">
+      <text>暂无预约</text>
+    </view>
+  </view>
+</view>

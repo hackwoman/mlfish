@@ -1,0 +1,32 @@
+========================================
+  编译错误已修复！
+========================================
+
+【问题原因】
+tabBar 只能引用主包页面，但"活动"页面在分包中
+
+【修复方案】
+将 pages/activity/list 从分包移到主包
+
+【修改内容】
+app.json:
+- pages: 添加 "pages/activity/list"
+- subpackages: 移除 pages/activity 分包
+
+【当前配置】
+主包页面:
+  - pages/index/index (日历)
+  - pages/profile/index (我的)
+  - pages/activity/list (活动)
+
+分包:
+  - packages/profile (订单/会员/积分)
+  - packages/detail (详情)
+  - packages/admin (管理)
+
+【下一步】
+1. 在微信开发者工具中重新编译
+2. 查看底部导航栏是否显示
+3. 测试三个标签页切换
+
+========================================

@@ -1,0 +1,154 @@
+/* membership.wxss */
+.container {
+  padding: 20rpx;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.member-card {
+  background: #159895;
+  border-radius: 24rpx;
+  padding: 40rpx;
+  color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.member-card.member-1 {
+  background: #159895;
+}
+
+.member-card.member-2 {
+  background: #159895;
+}
+
+.member-card.member-3 {
+  background: #159895;
+}
+
+.member-level {
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-bottom: 15rpx;
+}
+
+.member-id {
+  font-size: 24rpx;
+  opacity: 0.8;
+  margin-bottom: 10rpx;
+}
+
+.member-expiry {
+  font-size: 22rpx;
+  opacity: 0.7;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+}
+
+.benefit-icon {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+}
+
+.benefit-name {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.benefit-desc {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.upgrade-options {
+  display: flex;
+  gap: 20rpx;
+}
+
+.upgrade-item {
+  flex: 1;
+  background: #f8f9fa;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  text-align: center;
+  border: 2rpx solid transparent;
+}
+
+.upgrade-item:active {
+  border-color: #159895;
+}
+
+.upgrade-level {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.upgrade-price {
+  font-size: 28rpx;
+  color: #e74c3c;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.upgrade-benefit {
+  font-size: 20rpx;
+  color: #999;
+}
+
+.records {
+  display: flex;
+  flex-direction: column;
+}
+
+.record-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.record-item:last-child {
+  border-bottom: none;
+}
+
+.record-date {
+  font-size: 24rpx;
+  color: #999;
+  width: 140rpx;
+}
+
+.record-content {
+  flex: 1;
+  font-size: 26rpx;
+  color: #333;
+}
+
+.record-points {
+  font-size: 24rpx;
+  color: #e74c3c;
+}

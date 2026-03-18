@@ -1,0 +1,296 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 轮播 Banner -->
+  <view class="banner">
+    <swiper class="banner-swiper" bindchange="bannerChange" indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff" autoplay interval="5000" circular>
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <view class="banner-scene banner-scene-{{item.type}}">
+          <view class="sky"></view>
+          <view class="sun {{item.type}}"></view>
+          <view class="clouds">
+            <view class="cloud cloud-1"></view>
+            <view class="cloud cloud-2"></view>
+            <view class="cloud cloud-3"></view>
+          </view>
+          <view class="sea">
+            <view class="wave wave-1"></view>
+            <view class="wave wave-2"></view>
+            <view class="wave wave-3"></view>
+          </view>
+          <view class="boat {{item.type}}">
+            <view class="boat-hull"></view>
+            <view class="boat-cabin"></view>
+            <view class="boat-flag"></view>
+          </view>
+          <view class="fishing {{item.type}}">
+            <view class="fishing-rod"></view>
+            <view class="fishing-line"></view>
+            <view class="fish fish-1"></view>
+            <view class="fish fish-2"></view>
+          </view>
+          <view class="banner-overlay">
+            <view class="banner-icon">{{item.icon}}</view>
+            <view class="banner-title">{{item.title}}</view>
+            <view class="banner-subtitle">{{item.subtitle}}</view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 天气和统计 -->
+  <view class="stats-row">
+    <view class="stat-card">
+      <view class="stat-icon">{{weather.weatherIcon}}</view>
+      <view class="stat-value">{{weather.temp}}°C</view>
+      <view class="stat-label">{{weather.weather}}</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-icon">💧</view>
+      <view class="stat-value">{{weather.humidity}}%</view>
+      <view class="stat-label">湿度</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-icon">💨</view>
+      <view class="stat-value">{{weather.wind}}</view>
+      <view class="stat-label">风力</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-icon">📍</view>
+      <view class="stat-value" style="font-size:12px">大鹏东山</view>
+      <view class="stat-label">位置</view>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="quick-actions">
+    <view class="action-item" bindtap="goToActivityList">
+      <view class="action-icon">🎣</view>
+      <view class="action-text">活动列表</view>
+    </view>
+    <view class="action-item" bindtap="showQRCode">
+      <view class="action-icon">📱</view>
+      <view class="action-text">邀请好友</view>
+    </view>
+    <view class="action-item" bindtap="contactService">
+      <view class="action-icon">📞</view>
+      <view class="action-text">联系船长</view>
+    </view>
+    <view class="action-item" wx:if="{{isCaptain}}" bindtap="goToAdmin">
+      <view class="action-icon">⚙️</view>
+      <view class="action-text">管理后台</view>
+    </view>
+  </view>
+
+  <!-- 日历卡片 -->
+  <view class="card calendar-card">
+    <view class="calendar-header">
+      <view class="calendar-title">📅 {{currentYear}}年{{currentMonth}}月</view>
+      <view class="calendar-btns">
+        <view class="calendar-btn" bindtap="prevMonth">◀</view>
+        <view class="calendar-btn" bindtap="nextMonth">▶</view>
+      </view>
+    </view>
+    
+    <view class="calendar-weekdays">
+      <view class="weekday">日</view>
+      <view class="weekday">一</view>
+      <view class="weekday">二</view>
+      <view class="weekday">三</view>
+      <view class="weekday">四</view>
+      <view class="weekday">五</view>
+      <view class="weekday">六</view>
+    </view>
+    
+    <view class="calendar-days">
+      <block wx:for="{{days}}" wx:key="index">
+        <view 
+          class="day {{item.isToday ? 'today' : ''}} {{item.hasActivity ? 'has-activity' : ''}} {{item.hasBookings ? 'has-bookings' : ''}} {{item.hasTrip ? 'has-trip' : ''}}"
+          bindtap="selectDay"
+          data-date="{{item.date}}"
+        >
+          {{item.day}}
+          <view wx:if="{{item.bookingCount > 0}}" class="booking-badge">{{item.bookingCount}}</view>
+          <view wx:if="{{item.hasTrip}}" class="trip-badge">🚢</view>
+        </view>
+      </block>
+    </view>
+    
+    <view class="calendar-legend">
+      <view class="legend-item"><view class="legend-dot activity"></view><text>有活动</text></view>
+      <view class="legend-item"><view class="legend-dot bookings"></view><text>有预约</text></view>
+      <view class="legend-item"><view class="legend-dot trip"></view><text>有行程</text></view>
+    </view>
+  </view>
+
+  <!-- 我的预约 -->
+  <view class="section" wx:if="{{myBookings.length > 0 && !isCaptain}}">
+    <view class="section-header">
+      <view class="section-title">📋 我的预约</view>
+    </view>
+    <view class="booking-list">
+      <block wx:for="{{myBookings}}" wx:key="id">
+        <view class="booking-item">
+          <view class="booking-info">
+            <view class="booking-date">{{item.date}} {{item.timeSlot}}</view>
+            <view class="booking-meta">👥 {{item.people}}人 · 📱 {{item.phone}}</view>
+          </view>
+          <view class="booking-cancel" bindtap="cancelBooking" data-date="{{item.date}}" data-id="{{item.id}}">取消</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 近期活动（满 4 人） -->
+  <view class="section" wx:if="{{activities.length > 0}}">
+    <view class="section-header">
+      <view class="section-title">🔥 热门活动</view>
+    </view>
+    <view class="activity-list">
+      <block wx:for="{{activities}}" wx:key="id">
+        <view class="activity-item" bindtap="goToActivityDetail" data-id="{{item.id}}">
+          <view class="activity-cover" style="background: {{item.coverColor}};"></view>
+          <view class="activity-info">
+            <view class="activity-title">{{item.title}}</view>
+            <view class="activity-desc">{{item.description}}</view>
+            <view class="activity-meta">
+              <text>📅 {{item.displayDate}}</text>
+              <text>👥 {{item.current}}/{{item.max}}人</text>
+              <text>💰 ¥{{item.price}}/人</text>
+            </view>
+          </view>
+          <view class="activity-tag {{item.statusClass}}">{{item.statusText}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 船长面板 -->
+  <view class="captain-panel" wx:if="{{isCaptain}}">
+    <view class="section-header">
+      <view class="section-title">⚙️ 船长管理</view>
+      <view class="section-action" bindtap="toggleCaptainPanel">{{showCaptainPanel ? '收起' : '展开'}}</view>
+    </view>
+    
+    <view class="panel-content" wx:if="{{showCaptainPanel}}">
+      <view class="panel-stats">
+        <view class="panel-stat">
+          <view class="stat-label">今日预约</view>
+          <view class="stat-value">{{todayBookings}}人</view>
+        </view>
+        <view class="panel-stat">
+          <view class="stat-label">总人数</view>
+          <view class="stat-value">{{totalPeople}}人</view>
+        </view>
+      </view>
+      
+      <view class="panel-actions" wx:if="{{!currentTrip}}">
+        <button class="btn-action" bindtap="startTrip">发起行程</button>
+      </view>
+      
+      <view class="panel-actions" wx:if="{{currentTrip && currentTrip.status === 'ongoing'}}">
+        <button class="btn-action btn-info" bindtap="completeTrip">完成行程</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部占位 -->
+  <view class="bottom-space"></view>
+</view>
+
+<!-- 预约弹窗 -->
+<view class="modal-mask" wx:if="{{showBookingModal}}" bindtap="closeBookingModal"></view>
+<view class="booking-modal" wx:if="{{showBookingModal}}">
+  <view class="modal-header">
+    <view class="modal-title">🚤 预约出海</view>
+    <view class="modal-close" bindtap="closeBookingModal">✕</view>
+  </view>
+  
+  <view class="modal-body">
+    <view class="form-item">
+      <view class="form-label">预约日期</view>
+      <view class="form-value">{{bookingDate}}</view>
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">选择时间段</view>
+      <view class="time-slots">
+        <view 
+          class="time-slot {{selectedTimeSlot === item ? 'active' : ''}}" 
+          wx:for="{{bookingTimeSlots}}" 
+          wx:key="*this"
+          bindtap="selectTimeSlot"
+          data-slot="{{item}}"
+        >{{item}}</view>
+      </view>
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">人数</view>
+      <view class="people-selector">
+        <view class="people-btn" bindtap="decreasePeople">-</view>
+        <view class="people-value">{{bookingPeople}}</view>
+        <view class="people-btn" bindtap="increasePeople">+</view>
+      </view>
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">姓名</view>
+      <input class="form-input" placeholder="请输入姓名" bindinput="inputName" value="{{bookingName}}" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">手机号</view>
+      <input class="form-input" type="number" placeholder="请输入手机号" bindinput="inputPhone" value="{{bookingPhone}}" maxlength="11" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">预计费用</view>
+      <view class="form-value price">¥{{bookingPeople * 599}}</view>
+    </view>
+  </view>
+  
+  <view class="modal-footer">
+    <button class="btn-cancel" bindtap="closeBookingModal">取消</button>
+    <button class="btn-submit" bindtap="submitBooking">确认预约</button>
+  </view>
+</view>
+
+<!-- 船长发起行程弹窗 -->
+<view class="modal-mask" wx:if="{{showTripModal}}" bindtap="closeTripModal"></view>
+<view class="trip-modal" wx:if="{{showTripModal}}">
+  <view class="modal-header">
+    <view class="modal-title">🚤 发起行程</view>
+    <view class="modal-close" bindtap="closeTripModal">✕</view>
+  </view>
+  
+  <view class="modal-body">
+    <view class="form-item">
+      <view class="form-label">行程日期</view>
+      <view class="form-value">{{selectedTripDate}}</view>
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">选择时间段</view>
+      <view class="time-slots">
+        <view 
+          class="time-slot {{tripTimeSlot === item ? 'active' : ''}}" 
+          wx:for="{{bookingTimeSlots}}" 
+          wx:key="*this"
+          bindtap="selectTripTimeSlot"
+          data-slot="{{item}}"
+        >{{item}}</view>
+      </view>
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">总人数</view>
+      <view class="form-value">{{totalPeople}}人</view>
+    </view>
+  </view>
+  
+  <view class="modal-footer">
+    <button class="btn-cancel" bindtap="closeTripModal">取消</button>
+    <button class="btn-submit" bindtap="confirmStartTrip">确认发起</button>
+  </view>
+</view>

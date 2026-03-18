@@ -1,0 +1,159 @@
+/* points.wxss */
+.container {
+  padding: 20rpx;
+  background: #f5f5f5;
+  min-height: 100vh;
+}
+
+.points-card {
+  background: #159895;
+  border-radius: 24rpx;
+  padding: 50rpx;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.points-label {
+  font-size: 28rpx;
+  opacity: 0.8;
+  margin-bottom: 15rpx;
+}
+
+.points-value {
+  font-size: 80rpx;
+  font-weight: 700;
+  margin-bottom: 15rpx;
+}
+
+.points-tip {
+  font-size: 22rpx;
+  opacity: 0.7;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.rules {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.rule-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.rule-item:last-child {
+  border-bottom: none;
+}
+
+.rule-action {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.rule-points {
+  font-size: 26rpx;
+  color: #159895;
+  font-weight: 500;
+}
+
+.gifts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.gift-item {
+  width: calc(33.33% - 14rpx);
+  background: #f8f9fa;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  text-align: center;
+}
+
+.gift-icon {
+  font-size: 50rpx;
+  margin-bottom: 10rpx;
+}
+
+.gift-name {
+  font-size: 24rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.gift-points {
+  font-size: 22rpx;
+  color: #e74c3c;
+  margin-bottom: 15rpx;
+}
+
+.gift-btn {
+  font-size: 22rpx;
+  color: #159895;
+  border: 2rpx solid #159895;
+  border-radius: 20rpx;
+  padding: 8rpx 0;
+}
+
+.gift-btn:active {
+  background: #159895;
+  color: #fff;
+}
+
+.records {
+  display: flex;
+  flex-direction: column;
+}
+
+.record-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.record-item:last-child {
+  border-bottom: none;
+}
+
+.record-action {
+  font-size: 26rpx;
+  color: #333;
+  margin-bottom: 5rpx;
+}
+
+.record-date {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.record-points {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.record-points.add {
+  color: #2e7d32;
+}
+
+.record-points.sub {
+  color: #e74c3c;
+}
