@@ -75,13 +75,26 @@ Page({
         statusText = `${totalPeople}/4 人`;
       }
       
+      // 图标池 - 使用图片图标
+      const icons = [
+        '/images/icon_boat.png',
+        '/images/icon_fish.png', 
+        '/images/icon_fishing.png',
+        '/images/icon_sunset.png',
+        '/images/icon_island.png',
+        '/images/icon_squid.png',
+        '/images/icon_ocean.png',
+        '/images/icon_ship.png'
+      ];
+      const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+      
       activities.push({
         id: date.replace(/-/g, ''),
         title: activity?.title || '海钓活动',
         description: activity?.description || '大鹏湾海钓体验',
         date: displayDate,
         fullDate: date,
-        icon: '🚤',
+        icon: randomIcon,
         coverColor: this.getRandomColor(),
         current: totalPeople,
         max: activity?.maxPeople || 6,

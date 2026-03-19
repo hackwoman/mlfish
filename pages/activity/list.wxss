@@ -48,7 +48,8 @@
 }
 
 .activity-icon {
-  font-size: 60rpx;
+  width: 80rpx;
+  height: 80rpx;
 }
 
 .activity-content {
