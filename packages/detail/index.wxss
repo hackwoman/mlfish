@@ -1,0 +1,446 @@
+/* detail.wxss */
+
+.detail {
+  padding-bottom: 140rpx;
+}
+
+/* 封面 */
+.cover {
+  height: 350rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-icon {
+  font-size: 120rpx;
+}
+
+/* 卡片 */
+.info-card {
+  margin: -40rpx 30rpx 20rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.activity-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.activity-subtitle {
+  font-size: 26rpx;
+  color: #159895;
+  margin-bottom: 25rpx;
+}
+
+.activity-description {
+  background: #f5f5f5;
+  border-radius: 15rpx;
+  padding: 20rpx;
+  margin-bottom: 25rpx;
+}
+
+.desc-label {
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.desc-content {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+}
+
+.desc-content.text-warning {
+  color: #f57c00;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  padding: 15rpx 0;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.info-label {
+  margin-right: 10rpx;
+  font-size: 30rpx;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-top: 1rpx solid #f0f0f0;
+  margin-top: 20rpx;
+}
+
+.price-label {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.price-value {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #e74c3c;
+}
+
+.price-info {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+}
+
+.original-price {
+  font-size: 26rpx;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.vip-price {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #f57c00;
+}
+
+.discount-tag {
+  font-size: 22rpx;
+  color: #fff;
+  background: #f57c00;
+  padding: 6rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.text-success {
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+.text-warning {
+  color: #f57c00;
+  font-weight: 500;
+}
+
+/* 状态标签 */
+.status-badge {
+  display: inline-block;
+  padding: 10rpx 24rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  margin-top: 20rpx;
+}
+
+.status-badge.tag-warning {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.status-badge.tag-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-badge.tag-danger {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* 成员列表 */
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.members-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.member-item {
+  display: flex;
+  align-items: center;
+  padding: 15rpx;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+}
+
+.member-avatar {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  background: #ddd;
+}
+
+.member-info {
+  flex: 1;
+}
+
+.member-name {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.member-time {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.member-status {
+  font-size: 22rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.member-status.confirmed {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.member-status.pending {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.empty-members {
+  text-align: center;
+  padding: 30rpx;
+  color: #999;
+  font-size: 26rpx;
+}
+
+/* 钓点信息 */
+.spot-info {
+  padding: 20rpx;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+}
+
+.spot-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.spot-desc {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 10rpx;
+}
+
+.spot-distance {
+  font-size: 24rpx;
+  color: #159895;
+}
+
+/* 鱼种 */
+.fish-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.fish-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15rpx;
+}
+
+.fish-tag {
+  padding: 10rpx 20rpx;
+  background: #e3f2fd;
+  color: #1565c0;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.fishing-tips {
+  padding: 20rpx;
+  background: #fff8e1;
+  border-radius: 12rpx;
+}
+
+.tips-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #f57c00;
+  margin-bottom: 10rpx;
+}
+
+.tips-content {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 费用 */
+.price-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+  margin-bottom: 20rpx;
+}
+
+.price-label {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.price-value {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #e74c3c;
+}
+
+.fee-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+
+.fee-item {
+  display: flex;
+  align-items: center;
+  gap: 15rpx;
+  font-size: 26rpx;
+}
+
+.fee-item.included {
+  color: #2e7d32;
+}
+
+.fee-item.excluded {
+  color: #999;
+}
+
+/* 行程 */
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-item {
+  display: flex;
+  padding: 15rpx 0;
+}
+
+.schedule-time {
+  width: 120rpx;
+  font-size: 26rpx;
+  color: #159895;
+  font-weight: 500;
+}
+
+.schedule-content {
+  flex: 1;
+  font-size: 26rpx;
+  color: #666;
+}
+
+/* 注意事项 */
+.notice-card {
+  background: #fff8e1;
+}
+
+.notice-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #f57c00;
+  margin-bottom: 15rpx;
+}
+
+.notice-list {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* 提示 */
+.tip-card {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  background: #e3f2fd;
+  font-size: 24rpx;
+  color: #1565c0;
+}
+
+.tip-icon {
+  font-size: 30rpx;
+}
+
+/* 底部占位 */
+.bottom-space {
+  height: 140rpx;
+}
+
+/* 底部按钮 */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: #fff;
+  box-shadow: 0 -4rpx 20rpx rgba(0,0,0,0.05);
+}
+
+.contact-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 140rpx;
+  height: 88rpx;
+  border: 2rpx solid #ddd;
+  border-radius: 44rpx;
+  font-size: 22rpx;
+  color: #666;
+  margin-right: 20rpx;
+}
+
+.book-btn {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #159895;
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.book-btn.disabled {
+  background: #ccc;
+}
+
+.cancel-btn {
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #fff;
+  color: #e74c3c;
+  border: 2rpx solid #e74c3c;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+}

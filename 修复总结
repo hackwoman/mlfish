@@ -1,0 +1,30 @@
+========================================
+  预约功能错误已全部修复！
+========================================
+
+【修复的问题】
+
+1. 取消预约失败：docId must not be empty
+   原因：myBookings 数据缺少 id 字段
+   修复：loadMyBookings 中添加 id: b._id 映射
+
+2. 预约失败：app.createBooking is not a function
+   原因：app.js 缺少 createBooking 方法
+   修复：添加 createBooking 方法
+
+【修改文件】
+- app.js - 添加 createBooking 方法
+- pages/index/index.js - loadMyBookings 添加 id 映射
+
+【现在的功能】
+✓ 登录/注册
+✓ 查看预约
+✓ 创建预约
+✓ 取消预约
+
+【测试步骤】
+1. 重新编译
+2. 测试预约功能
+3. 测试取消功能
+
+========================================

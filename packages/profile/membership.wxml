@@ -1,0 +1,90 @@
+<!--membership.wxml-->
+<view class="container">
+  <!-- 会员卡片 -->
+  <view class="member-card member-{{level}}">
+    <view class="member-level">{{levelName}}</view>
+    <view class="member-id">会员号：{{memberId}}</view>
+    <view class="member-expiry">有效期至：{{expiryDate}}</view>
+  </view>
+
+  <!-- 权益说明 -->
+  <view class="card">
+    <view class="card-title">💎 会员权益</view>
+    <view class="benefits">
+      <view class="benefit-item">
+        <text class="benefit-icon">🎫</text>
+        <view class="benefit-info">
+          <view class="benefit-name">活动折扣</view>
+          <view class="benefit-desc">享受 {{discount}} 折优惠</view>
+        </view>
+      </view>
+      <view class="benefit-item">
+        <text class="benefit-icon">⏰</text>
+        <view class="benefit-info">
+          <view class="benefit-name">预约优先</view>
+          <view class="benefit-desc">热门活动优先预订</view>
+        </view>
+      </view>
+      <view class="benefit-item">
+        <text class="benefit-icon">🎁</text>
+        <view class="benefit-info">
+          <view class="benefit-name">积分加倍</view>
+          <view class="benefit-desc">消费获得双倍积分</view>
+        </view>
+      </view>
+      <view class="benefit-item" wx:if="{{level >= 2}}">
+        <text class="benefit-icon">👑</text>
+        <view class="benefit-info">
+          <view class="benefit-name">专属活动</view>
+          <view class="benefit-desc">会员专属高端活动</view>
+        </view>
+      </view>
+      <view class="benefit-item" wx:if="{{level >= 3}}">
+        <text class="benefit-icon">⚓</text>
+        <view class="benefit-info">
+          <view class="benefit-name">专属船长</view>
+          <view class="benefit-desc">优先预约明星船长</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 升级选项 -->
+  <view class="card" wx:if="{{level < 3}}">
+    <view class="card-title">⬆️ 升级会员</view>
+    <view class="upgrade-options">
+      <view class="upgrade-item" bindtap="upgrade" data-level="1">
+        <view class="upgrade-level">银卡会员</view>
+        <view class="upgrade-price">¥99/年</view>
+        <view class="upgrade-benefit">9折优惠</view>
+      </view>
+      <view class="upgrade-item" bindtap="upgrade" data-level="2">
+        <view class="upgrade-level">金卡会员</view>
+        <view class="upgrade-price">¥299/年</view>
+        <view class="upgrade-benefit">8折+专属活动</view>
+      </view>
+      <view class="upgrade-item" bindtap="upgrade" data-level="3">
+        <view class="upgrade-level">黑卡会员</view>
+        <view class="upgrade-price">¥699/年</view>
+        <view class="upgrade-benefit">7折+专属船长</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 使用记录 -->
+  <view class="card">
+    <view class="card-title">📋 使用记录</view>
+    <view class="records">
+      <view class="record-item">
+        <view class="record-date">2026.02.28</view>
+        <view class="record-content">初级海钓培训</view>
+        <view class="record-points">-100积分</view>
+      </view>
+      <view class="record-item">
+        <view class="record-date">2026.02.15</view>
+        <view class="record-content">大鹏湾海钓体验</view>
+        <view class="record-points">-200积分</view>
+      </view>
+    </view>
+  </view>
+</view>

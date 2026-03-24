@@ -1,0 +1,22 @@
+# 微信小程序
+user.config.json
+user.private.config.json
+
+# 编译产物
+miniprogram_dist/
+
+# 临时文件
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# 开发工具
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 敏感信息
+*.env
+credentials.json

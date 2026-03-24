@@ -1,0 +1,260 @@
+<!--profile.wxml-->
+<view class="profile">
+  <!-- 用户信息卡片 -->
+  <view class="user-card" bindtap="goToLogin">
+    <view class="avatar avatar-gradient"></view>
+    <view class="user-detail">
+      <view class="nickname">{{userInfo ? userInfo.nickName : '点击登录/注册'}}</view>
+      <view class="member-level" wx:if="{{userInfo && memberLevel > 0}}">
+        <text class="level-badge level-{{memberLevel}}">{{levelName}}</text>
+      </view>
+      <view class="login-tip" wx:if="{{!userInfo}}">
+        登录后可预约和享受会员优惠
+      </view>
+    </view>
+    <view class="user-arrow">></view>
+  </view>
+
+  <!-- 登录后显示的信息 -->
+  <view class="user-info-bar" wx:if="{{userInfo}}">
+    <view class="info-item">
+      <text class="info-label">手机</text>
+      <text class="info-value">{{userInfo.phone}}</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">等级</text>
+      <text class="info-value level-{{memberLevel}}">{{levelName}}</text>
+    </view>
+  </view>
+
+  <!-- 统计数据 -->
+  <view class="stats-card" wx:if="{{userInfo}}">
+    <view class="stats-item">
+      <view class="stats-value">{{stats.points}}</view>
+      <view class="stats-label">积分</view>
+    </view>
+    <view class="stats-item">
+      <view class="stats-value">{{stats.bookings}}</view>
+      <view class="stats-label">预约</view>
+    </view>
+    <view class="stats-item">
+      <view class="stats-value">{{stats.completed}}</view>
+      <view class="stats-label">成行</view>
+    </view>
+  </view>
+
+  <!-- 未登录提示 -->
+  <view class="not-login-tip" wx:if="{{!userInfo}}">
+    <view class="tip-icon">🔔</view>
+    <view class="tip-text">登录后享受更多服务和会员优惠</view>
+  </view>
+
+  <!-- 会员权益 -->
+  <view class="card benefit-card" wx:if="{{userInfo && memberLevel > 0}}">
+    <view class="card-header">
+      <view class="card-title">💳 会员权益</view>
+    </view>
+    <view class="benefit-list">
+      <view class="benefit-item">
+        <text>🎫</text>
+        <text>活动折扣 {{discount}}折</text>
+      </view>
+      <view class="benefit-item">
+        <text>⏰</text>
+        <text>预约优先</text>
+      </view>
+      <view class="benefit-item" wx:if="{{memberLevel >= 2}}">
+        <text>👑</text>
+        <text>专属活动</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 菜单列表 -->
+  <view class="card menu-card">
+    <view class="menu-item {{!userInfo ? 'disabled' : ''}}" bindtap="{{userInfo ? 'goToBookings' : 'goToLogin'}}">
+      <view class="menu-left">
+        <text class="menu-icon">🎫</text>
+        <text>我的预约</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="goToMembership">
+      <view class="menu-left">
+        <text class="menu-icon">💳</text>
+        <text>会员卡</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="goToPoints">
+      <view class="menu-left">
+        <text class="menu-icon">🎁</text>
+        <text>积分商城</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="goToGroup">
+      <view class="menu-left">
+        <text class="menu-icon">💬</text>
+        <text>会员群</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" bindtap="contactService">
+      <view class="menu-left">
+        <text class="menu-icon">📞</text>
+        <text>联系客服</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+
+  <!-- 管理员入口 -->
+  <view class="card admin-card" wx:if="{{isAdmin}}">
+    <view class="menu-item" bindtap="goToAdmin">
+      <view class="menu-left">
+        <text class="menu-icon">⚙️</text>
+        <text>管理后台</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+
+  <!-- 演示：管理员设置 / 退出登录 -->
+  <view class="card demo-card">
+    <view class="menu-item" wx:if="{{userInfo && isAdmin}}" bindtap="removeAdmin">
+      <view class="menu-left">
+        <text class="menu-icon">🔐</text>
+        <text>取消管理员</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" wx:if="{{userInfo && !isAdmin}}" bindtap="setAsAdmin">
+      <view class="menu-left">
+        <text class="menu-icon">🔐</text>
+        <text>设为管理员（演示）</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" wx:if="{{userInfo}}" bindtap="logout">
+      <view class="menu-left">
+        <text class="menu-icon">🚪</text>
+        <text>退出登录</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    <view class="menu-item" wx:if="{{!userInfo}}" bindtap="goToLogin">
+      <view class="menu-left">
+        <text class="menu-icon">🔑</text>
+        <text>登录/注册</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="version">
+    <text>魅力海钓 v1.0.0</text>
+  </view>
+</view>
+
+<!-- 登录弹窗 -->
+<view class="modal-mask" wx:if="{{showLoginModal}}" bindtap="closeLoginModal"></view>
+<view class="login-modal" wx:if="{{showLoginModal}}">
+  <view class="modal-header">
+    <view class="modal-title">欢迎使用</view>
+    <view class="modal-subtitle">{{loginMode === 'login' ? '登录后享受会员优惠' : '注册新账号'}}</view>
+    <view class="modal-close-btn" bindtap="closeLoginModal">✕</view>
+  </view>
+  
+  <!-- 登录/注册模式切换 -->
+  <view class="mode-switch">
+    <view 
+      class="mode-item {{loginMode === 'login' ? 'active' : ''}}" 
+      bindtap="switchLoginMode" 
+      data-mode="login"
+    >登录</view>
+    <view 
+      class="mode-item {{loginMode === 'register' ? 'active' : ''}}" 
+      bindtap="switchLoginMode" 
+      data-mode="register"
+    >注册</view>
+  </view>
+  
+  <view class="modal-content">
+    <!-- 注册模式：需要姓名 -->
+    <view class="form-item" wx:if="{{loginMode === 'register'}}">
+      <view class="form-label">姓名</view>
+      <input class="form-input" placeholder="请输入姓名" bindinput="inputName" value="{{loginName}}" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">手机号</view>
+      <input class="form-input" type="number" maxlength="11" placeholder="请输入11位手机号" bindinput="inputPhone" value="{{loginPhone}}" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">{{loginMode === 'login' ? '密码' : '设置密码'}}</view>
+      <input class="form-input" password placeholder="{{loginMode === 'login' ? '请输入密码' : '请设置密码（至少6位）'}}" bindinput="inputPassword" value="{{loginPassword}}" />
+    </view>
+    
+    <!-- 注册模式：需要确认密码 -->
+    <view class="form-item" wx:if="{{loginMode === 'register'}}">
+      <view class="form-label">确认密码</view>
+      <input class="form-input" password placeholder="请再次输入密码" bindinput="inputPassword2" value="{{loginPassword2}}" />
+    </view>
+    
+    <!-- 注册模式：显示权益 -->
+    <view class="login-benefit" wx:if="{{loginMode === 'register'}}">
+      <view class="benefit-title">🎁 新用户专享</view>
+      <view class="benefit-item">• 注册即送100积分</view>
+      <view class="benefit-item">• 享受会员专属折扣</view>
+      <view class="benefit-item">• 预约更方便</view>
+    </view>
+    
+    <!-- 登录模式：显示忘记密码 -->
+    <view class="forgot-link" wx:if="{{loginMode === 'login'}}" bindtap="showForgotPassword">忘记密码？</view>
+    
+    <!-- 根据模式显示不同按钮 -->
+    <button class="btn-login" bindtap="{{loginMode === 'login' ? 'doLogin' : 'doRegister'}}">
+      {{loginMode === 'login' ? '登录' : '注册'}}
+    </button>
+    
+    <view class="login-tip-bottom">
+      {{loginMode === 'login' ? '登录即表示同意我们的服务条款' : '注册即表示同意我们的服务条款'}}
+    </view>
+  </view>
+</view>
+
+<!-- 忘记密码弹窗 -->
+<view class="modal-mask" wx:if="{{showForgotModal}}" bindtap="closeForgotModal"></view>
+<view class="login-modal" wx:if="{{showForgotModal}}">
+  <view class="modal-header">
+    <view class="modal-title">找回密码</view>
+    <view class="modal-subtitle">请输入注册时的手机号</view>
+    <view class="modal-close-btn" bindtap="closeForgotModal">✕</view>
+  </view>
+  
+  <view class="modal-content">
+    <view class="form-item">
+      <view class="form-label">手机号</view>
+      <input class="form-input" type="number" maxlength="11" placeholder="请输入注册时的手机号" bindinput="inputForgotPhone" value="{{forgotPhone}}" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">新密码</view>
+      <input class="form-input" password placeholder="请输入新密码（至少6位）" bindinput="inputForgotPassword" value="{{forgotPassword}}" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">确认密码</view>
+      <input class="form-input" password placeholder="请再次输入新密码" bindinput="inputForgotPassword2" value="{{forgotPassword2}}" />
+    </view>
+    
+    <button class="btn-login" bindtap="submitForgotPassword">重置密码</button>
+    
+    <view class="login-tip-bottom">
+      重置后密码将更新，请牢记新密码
+    </view>
+  </view>
+</view>

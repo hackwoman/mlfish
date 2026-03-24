@@ -1,0 +1,168 @@
+<!--admin.wxml-->
+<view class="admin-container">
+  <!-- 标签切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{currentTab === 0 ? 'active' : ''}}" bindtap="switchTab" data-idx="0">活动模板</view>
+    <view class="tab-item {{currentTab === 1 ? 'active' : ''}}" bindtap="switchTab" data-idx="1">会员管理</view>
+  </view>
+
+  <!-- 活动模板管理 -->
+  <view class="tab-content" wx:if="{{currentTab === 0}}">
+    <view class="section-header">
+      <view class="section-title">活动模板列表</view>
+      <button class="btn-add" bindtap="showAddTemplate">+ 添加模板</button>
+    </view>
+    
+    <view class="template-list">
+      <block wx:for="{{activityTemplates}}" wx:key="id">
+        <view class="template-item">
+          <view class="template-info">
+            <view class="template-title">{{item.title}}</view>
+            <view class="template-desc">{{item.description || '无描述'}}</view>
+            <view class="template-meta">¥{{item.price}} · 最多{{item.maxPeople}}人</view>
+          </view>
+          <view class="template-actions">
+            <view class="action-btn edit" bindtap="editTemplate" data-idx="{{index}}">编辑</view>
+            <view class="action-btn delete" bindtap="deleteTemplate" data-idx="{{index}}">删除</view>
+          </view>
+        </view>
+      </block>
+      
+      <view class="empty-tip" wx:if="{{activityTemplates.length === 0}}">
+        暂无活动模板，点击上方添加
+      </view>
+    </view>
+  </view>
+
+  <!-- 会员管理 -->
+  <view class="tab-content" wx:if="{{currentTab === 1}}">
+    <view class="section-header">
+      <view class="section-title">会员列表</view>
+      <view class="section-tip">共 {{members.length}} 人</view>
+    </view>
+    
+    <view class="member-list">
+      <block wx:for="{{members}}" wx:key="id">
+        <view class="member-item">
+          <view class="member-info">
+            <view class="member-name">{{item.name}}</view>
+            <view class="member-phone">{{item.phone}}</view>
+            <view class="member-meta">积分：{{item.points}} · 预约{{item.totalBookings || 0}}次</view>
+          </view>
+          <view class="member-actions">
+            <picker bindchange="changeMemberLevel" value="{{item.memberLevel}}" range="{{['普通', '会员', '贵宾']}}" data-idx="{{index}}">
+              <view class="member-level level-{{item.memberLevel}}">
+                {{['普通', '会员', '贵宾'][item.memberLevel]}}
+              </view>
+            </picker>
+            <view class="action-btn delete" bindtap="deleteMember" data-idx="{{index}}">删除</view>
+          </view>
+        </view>
+      </block>
+      
+      <view class="empty-tip" wx:if="{{members.length === 0}}">
+        暂无注册会员
+      </view>
+    </view>
+    
+    <view class="level-desc">
+      <view class="desc-title">会员等级说明</view>
+      <view class="desc-item">🌟 普通：标准价格</view>
+      <view class="desc-item">🌟 会员：9折优惠</view>
+      <view class="desc-item">🌟 贵宾：7折优惠</view>
+    </view>
+  </view>
+
+  <!-- 预约日志 -->
+  <view class="tab-content" wx:if="{{currentTab === 2}}">
+    <view class="section-header">
+      <view class="section-title">预约/活动日志</view>
+      <view class="section-tip">共 {{bookingLogs.length}} 条</view>
+    </view>
+    
+    <view class="log-list">
+      <block wx:for="{{bookingLogs}}" wx:key="id">
+        <view class="log-item">
+          <view class="log-header">
+            <view class="log-date">{{item.date}}</view>
+            <view class="status-tag {{item.statusClass}}">{{item.status}}</view>
+          </view>
+          <view class="log-activity">{{item.activityTitle}}</view>
+          <view class="log-desc">{{item.activityDescription}}</view>
+          <view class="log-meta">
+            <text>👥 {{item.currentPeople}}/{{item.maxPeople}}人</text>
+            <text>💰 ¥{{item.price}}</text>
+            <text wx:if="{{item.autoCreated}}">🤖 自动成行</text>
+          </view>
+          <view class="log-actions">
+            <view class="action-btn" bindtap="viewBookingDetail" data-date="{{item.date}}">查看详情</view>
+            <view class="action-btn" wx:if="{{item.status === '预约'}}" bindtap="changeLogStatus" data-date="{{item.date}}" data-status="ongoing">开始行程</view>
+            <view class="action-btn" wx:if="{{item.status === '进行中'}}" bindtap="changeLogStatus" data-date="{{item.date}}" data-status="completed">完成</view>
+          </view>
+        </view>
+      </block>
+      
+      <view class="empty-tip" wx:if="{{bookingLogs.length === 0}}">
+        暂无预约记录
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 模板弹窗 -->
+<view class="modal-mask" wx:if="{{showTemplateModal}}" bindtap="closeModal"></view>
+<view class="modal" wx:if="{{showTemplateModal}}">
+  <view class="modal-header">
+    <view class="modal-title">{{editingTemplate ? '编辑模板' : '添加模板'}}</view>
+    <view class="modal-close" bindtap="closeModal">✕</view>
+  </view>
+  
+  <view class="modal-content">
+    <view class="form-item">
+      <view class="form-label">活动名称</view>
+      <input class="form-input" placeholder="如：大鹏湾海钓体验" value="{{newTemplate.title}}" data-field="title" bindinput="inputTemplate" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">活动描述</view>
+      <textarea class="form-textarea" placeholder="描述出海钓鱼的体验流程、注意事项等" value="{{newTemplate.description}}" data-field="description" bindinput="inputTemplate" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">价格（元）</view>
+      <input class="form-input" type="number" value="{{newTemplate.price}}" data-field="price" bindinput="inputTemplate" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">最大人数</view>
+      <input class="form-input" type="number" value="{{newTemplate.maxPeople}}" data-field="maxPeople" bindinput="inputTemplate" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">鱼种（逗号分隔）</view>
+      <input class="form-input" placeholder="如：石斑鱼,鲷鱼,金枪鱼" value="{{newTemplate.fishSpecies}}" data-field="fishSpecies" bindinput="inputTemplate" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">钓法</view>
+      <input class="form-input" placeholder="如：铁板逗钓,活饵钓" value="{{newTemplate.fishingMethods}}" data-field="fishingMethods" bindinput="inputTemplate" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">钓点信息</view>
+      <textarea class="form-textarea" placeholder="描述钓点特点、水质、鱼群等" value="{{newTemplate.fishingSpot}}" data-field="fishingSpot" bindinput="inputTemplate" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">集合地点</view>
+      <input class="form-input" placeholder="如：深圳大鹏东山码头" value="{{newTemplate.location}}" data-field="location" bindinput="inputTemplate" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">活动时间</view>
+      <input class="form-input" placeholder="如：全天" value="{{newTemplate.time}}" data-field="time" bindinput="inputTemplate" />
+    </view>
+    
+    <button class="btn-save" bindtap="saveTemplate">保存</button>
+  </view>
+</view>

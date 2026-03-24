@@ -1,0 +1,30 @@
+<!--activity.wxml-->
+<view class="activity-list">
+  <view class="filter-bar">
+    <view class="filter-item active">全部</view>
+    <view class="filter-item">出海</view>
+    <view class="filter-item">岸钓</view>
+    <view class="filter-item">培训</view>
+  </view>
+
+  <scroll-view scroll-y class="list-scroll">
+    <block wx:for="{{activities}}" wx:key="id">
+      <view class="activity-card" bindtap="goToDetail" data-id="{{item.id}}">
+        <view class="activity-cover" style="background: {{item.coverColor}};">
+          <image class="activity-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        </view>
+        <view class="activity-content">
+          <view class="activity-title">{{item.title}}</view>
+          <view class="activity-tags">
+            <text class="tag tag-date">{{item.date}}</text>
+            <text class="tag {{item.statusClass}}">{{item.statusText}}</text>
+          </view>
+          <view class="activity-meta">
+            <text>👥 {{item.current}}/{{item.max}}人</text>
+            <text class="price">¥{{item.price}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
