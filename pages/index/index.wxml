@@ -11,25 +11,19 @@
       <swiper-item>
         <image class="banner-img" src="/images/banner1.png" mode="aspectFill"></image>
         <view class="banner-overlay">
-          <view class="banner-icon">🚤</view>
-          <view class="banner-title">开启你的海钓之旅</view>
-          <view class="banner-subtitle">专业船长 · 优质钓点 · 难忘体验</view>
+          <!-- 图片已有文字，移除代码中的文字 -->
         </view>
       </swiper-item>
       <swiper-item>
         <image class="banner-img" src="/images/banner2.png" mode="aspectFill"></image>
         <view class="banner-overlay">
-          <view class="banner-icon">🌅</view>
-          <view class="banner-title">观赏日落美景</view>
-          <view class="banner-subtitle">夕阳西下 · 渔舟唱晚 · 浪漫体验</view>
+          <!-- 图片已有文字，移除代码中的文字 -->
         </view>
       </swiper-item>
       <swiper-item>
         <image class="banner-img" src="/images/banner3.jpg" mode="aspectFill"></image>
         <view class="banner-overlay">
-          <view class="banner-icon">🏝️</view>
-          <view class="banner-title">探索海岛风情</view>
-          <view class="banner-subtitle">碧海蓝天 · 轻松垂钓 · 乐趣无穷</view>
+          <!-- 图片已有文字，移除代码中的文字 -->
         </view>
       </swiper-item>
     </swiper>
