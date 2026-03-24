@@ -4,27 +4,63 @@
   <view class="banner">
     <swiper class="banner-swiper" bindchange="bannerChange" indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff" autoplay interval="5000" circular>
       <swiper-item>
-        <image class="banner-img" src="/images/banner1.gif" mode="aspectFill"></image>
-        <view class="banner-overlay">
-          <view class="banner-icon">🚤</view>
-          <view class="banner-title">开启你的海钓之旅</view>
-          <view class="banner-subtitle">专业船长 · 优质钓点 · 难忘体验</view>
+        <image class="banner-img" src="/images/banner1.png" mode="aspectFill"></image>
+        <view class="banner-overlay banner-overlay-1">
+          <view class="banner-ribbon">
+            <view class="banner-ribbon-line"></view>
+            <view class="banner-ribbon-text">蓝海魅力海钓俱乐部</view>
+            <view class="banner-ribbon-line"></view>
+          </view>
+          <view class="banner-title-wrap">
+            <view class="banner-title-deco banner-title-deco-left">✦</view>
+            <view class="banner-title">开启你的海钓之旅</view>
+            <view class="banner-title-deco banner-title-deco-right">✦</view>
+          </view>
+          <view class="banner-subtitle-row">
+            <view class="banner-subtitle-sep"></view>
+            <view class="banner-subtitle">专业船长 · 优质钓点 · 难忘体验</view>
+            <view class="banner-subtitle-sep"></view>
+          </view>
         </view>
       </swiper-item>
       <swiper-item>
-        <image class="banner-img" src="/images/banner2.gif" mode="aspectFill"></image>
-        <view class="banner-overlay">
-          <view class="banner-icon">🌅</view>
-          <view class="banner-title">观赏日落美景</view>
-          <view class="banner-subtitle">夕阳西下 · 渔舟唱晚 · 浪漫体验</view>
+        <image class="banner-img" src="/images/banner2.png" mode="aspectFill"></image>
+        <view class="banner-overlay banner-overlay-2">
+          <view class="banner-ribbon banner-ribbon-dark">
+            <view class="banner-ribbon-line banner-ribbon-line-dark"></view>
+            <view class="banner-ribbon-text banner-ribbon-text-dark">蓝海魅力海钓俱乐部</view>
+            <view class="banner-ribbon-line banner-ribbon-line-dark"></view>
+          </view>
+          <view class="banner-title-wrap">
+            <view class="banner-title-deco banner-title-deco-left banner-title-deco-light">❂</view>
+            <view class="banner-title banner-title-light">观赏日落美景</view>
+            <view class="banner-title-deco banner-title-deco-right banner-title-deco-light">❂</view>
+          </view>
+          <view class="banner-subtitle-row">
+            <view class="banner-subtitle-sep banner-subtitle-sep-dark"></view>
+            <view class="banner-subtitle banner-subtitle-glow">夕阳西下 · 渔舟唱晚 · 浪漫体验</view>
+            <view class="banner-subtitle-sep banner-subtitle-sep-dark"></view>
+          </view>
         </view>
       </swiper-item>
       <swiper-item>
-        <image class="banner-img" src="/images/banner3.gif" mode="aspectFill"></image>
-        <view class="banner-overlay">
-          <view class="banner-icon">🏝️</view>
-          <view class="banner-title">探索海岛风情</view>
-          <view class="banner-subtitle">碧海蓝天 · 轻松垂钓 · 乐趣无穷</view>
+        <image class="banner-img" src="/images/banner3.png" mode="aspectFill"></image>
+        <view class="banner-overlay banner-overlay-3">
+          <view class="banner-ribbon">
+            <view class="banner-ribbon-line"></view>
+            <view class="banner-ribbon-text">蓝海魅力海钓俱乐部</view>
+            <view class="banner-ribbon-line"></view>
+          </view>
+          <view class="banner-title-wrap">
+            <view class="banner-title-deco banner-title-deco-left">✦</view>
+            <view class="banner-title">探索海岛风情</view>
+            <view class="banner-title-deco banner-title-deco-right">✦</view>
+          </view>
+          <view class="banner-subtitle-row">
+            <view class="banner-subtitle-sep"></view>
+            <view class="banner-subtitle">碧海蓝天 · 轻松垂钓 · 乐趣无穷</view>
+            <view class="banner-subtitle-sep"></view>
+          </view>
         </view>
       </swiper-item>
     </swiper>
