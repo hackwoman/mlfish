@@ -9,7 +9,7 @@
     </view>
     <swiper class="banner-swiper" bindchange="bannerChange" indicator-dots indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff" autoplay interval="5000" circular>
       <swiper-item>
-        <image class="banner-img" src="/images/banner1.gif" mode="aspectFill"></image>
+        <image class="banner-img" src="/images/banner1.png" mode="aspectFill"></image>
         <view class="banner-overlay">
           <view class="banner-icon">🚤</view>
           <view class="banner-title">开启你的海钓之旅</view>
@@ -17,7 +17,7 @@
         </view>
       </swiper-item>
       <swiper-item>
-        <image class="banner-img" src="/images/banner2.gif" mode="aspectFill"></image>
+        <image class="banner-img" src="/images/banner2.png" mode="aspectFill"></image>
         <view class="banner-overlay">
           <view class="banner-icon">🌅</view>
           <view class="banner-title">观赏日落美景</view>
@@ -25,7 +25,7 @@
         </view>
       </swiper-item>
       <swiper-item>
-        <image class="banner-img" src="/images/banner3.gif" mode="aspectFill"></image>
+        <image class="banner-img" src="/images/banner3.jpg" mode="aspectFill"></image>
         <view class="banner-overlay">
           <view class="banner-icon">🏝️</view>
           <view class="banner-title">探索海岛风情</view>
