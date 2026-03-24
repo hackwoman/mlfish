@@ -20,3 +20,6 @@ Thumbs.db
 # 敏感信息
 *.env
 credentials.json
+
+# 依赖
+node_modules/
