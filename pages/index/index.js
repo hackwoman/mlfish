@@ -84,8 +84,8 @@ Page({
       selectedDate: this.formatDate(now)
     });
     
-    // 加载天气（临时注释以调试启动失败）
-    // this.loadWeather();
+    // 加载天气
+    this.loadWeather();
     
     // 初始化 Banner
     this.initBanner();
