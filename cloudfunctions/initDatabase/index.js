@@ -42,7 +42,7 @@ exports.main = async (event, context) => {
   }
   
   // 默认操作：检查并创建集合
-  const collections = ['users', 'bookings', 'trips', 'activityTemplates'];
+  const collections = ['users', 'bookings', 'trips', 'activityTemplates', 'activityHistory'];
   const results = [];
   
   for (const name of collections) {

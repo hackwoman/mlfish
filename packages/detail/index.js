@@ -679,7 +679,40 @@ Page({
           if (!history.includes(newValue)) {
             history.unshift(newValue); // 添加到开头
             if (history.length > 10) history.pop(); // 最多保留10条
+            
+            // 保存到本地存储（降级）
             wx.setStorageSync(historyKey, history);
+            
+            // 保存到云数据库
+            const userInfo = wx.getStorageSync('userInfo');
+            if (userInfo && userInfo._id) {
+              const db = app.getDB();
+              db.collection('activityHistory').where({
+                userId: userInfo._id
+              }).get().then(res => {
+                if (res.data.length > 0) {
+                  // 更新现有记录
+                  db.collection('activityHistory').doc(res.data[0]._id).update({
+                    data: {
+                      titles: history,
+                      updateTime: new Date().toISOString()
+                    }
+                  });
+                } else {
+                  // 新增记录
+                  db.collection('activityHistory').add({
+                    data: {
+                      userId: userInfo._id,
+                      titles: history,
+                      createTime: new Date().toISOString(),
+                      updateTime: new Date().toISOString()
+                    }
+                  });
+                }
+              }).catch(err => {
+                console.error('保存历史记录到云数据库失败:', err);
+              });
+            }
           }
         }
       }
