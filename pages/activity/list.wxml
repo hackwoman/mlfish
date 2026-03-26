@@ -11,7 +11,7 @@
     <block wx:for="{{activities}}" wx:key="id">
       <view class="activity-card" bindtap="goToDetail" data-id="{{item.id}}">
         <view class="activity-cover" style="background: {{item.coverColor}};">
-          <image class="activity-icon" src="{{item.icon}}" mode="aspectFit"></image>
+          <!-- 图标已移除，因图片资源缺失 -->
         </view>
         <view class="activity-content">
           <view class="activity-title">{{item.title}}</view>
