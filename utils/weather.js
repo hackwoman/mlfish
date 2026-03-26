@@ -20,44 +20,75 @@ const WEATHER_ICONS = {
   '风': '💨'
 };
 
-// 获取天气数据（使用和风天气免费 API）
-// 注意：需要申请 API key，这里使用模拟数据 + 真实接口框架
+// 获取天气数据
 async function getWeather() {
+  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+  const cacheKey = `weatherCache_${today}`;
+  
+  // 1. 检查本地缓存（当天有效）
   try {
-    // 方案 1: 使用微信小程序天气插件（需要配置）
-    // 方案 2: 使用腾讯天气 API
-    // 方案 3: 使用和风天气 API
-    
-    // 这里先使用模拟数据，实际部署时替换为真实 API
-    const mockWeather = getMockWeather();
-    return {
-      success: true,
-      data: mockWeather
-    };
-    
-    // 真实 API 调用示例（需要 API key）:
-    /*
-    const apiKey = 'YOUR_HEWEATHER_API_KEY';
-    const url = `https://devapi.qweather.com/v7/weather/now?location=${WEATHER_CONFIG.longitude},${WEATHER_CONFIG.latitude}&key=${apiKey}`;
-    
-    const res = await wx.request({
-      url: url,
-      method: 'GET'
-    });
-    
-    if (res.statusCode === 200 && res.data.code === '200') {
+    const cached = wx.getStorageSync(cacheKey);
+    if (cached) {
+      console.log('[天气] 使用当天缓存数据');
       return {
         success: true,
-        data: parseWeatherData(res.data.now)
+        data: cached
       };
     }
-    */
-  } catch (e) {
-    console.error('获取天气失败:', e);
-    return {
-      success: false,
-      error: e
-    };
+  } catch (err) {
+    console.warn('[天气] 读取缓存失败:', err);
+  }
+  
+  // 2. 尝试真实API（如果有API密钥）
+  const apiKey = getWeatherApiKey();
+  if (apiKey) {
+    try {
+      const weatherData = await fetchWeatherFromAPI(apiKey);
+      // 3. 缓存数据（当天有效）
+      wx.setStorageSync(cacheKey, weatherData);
+      return {
+        success: true,
+        data: weatherData
+      };
+    } catch (err) {
+      console.warn('[天气] API获取失败，使用模拟数据:', err);
+    }
+  }
+  
+  // 4. 使用模拟数据（作为降级方案）
+  const mockData = getMockWeather();
+  // 同样缓存模拟数据，避免重复生成
+  wx.setStorageSync(cacheKey, mockData);
+  return {
+    success: true,
+    data: mockData
+  };
+}
+
+// 获取天气API密钥（用户需要在此配置）
+function getWeatherApiKey() {
+  // 请在此处填入您的和风天气API密钥
+  // 可以从 https://devapi.qweather.com/ 免费申请
+  // const API_KEY = 'YOUR_API_KEY_HERE';
+  const API_KEY = ''; // 留空表示不使用真实API
+  
+  return API_KEY || null;
+}
+
+// 从API获取天气数据
+async function fetchWeatherFromAPI(apiKey) {
+  const url = `https://devapi.qweather.com/v7/weather/now?location=${WEATHER_CONFIG.longitude},${WEATHER_CONFIG.latitude}&key=${apiKey}`;
+  
+  const res = await wx.request({
+    url: url,
+    method: 'GET',
+    timeout: 5000 // 5秒超时
+  });
+  
+  if (res.statusCode === 200 && res.data.code === '200') {
+    return parseWeatherData(res.data.now);
+  } else {
+    throw new Error(`API请求失败: ${res.statusCode} ${res.data?.code || ''}`);
   }
 }
 
