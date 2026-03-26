@@ -114,6 +114,7 @@ Page({
     this.loadActivities();
     this.loadMyBookings();
     this.loadTrips();
+    this.generateCalendar(); // 重新生成日历，确保预约人数更新
   },
 
   // 加载天气
