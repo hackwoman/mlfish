@@ -631,7 +631,8 @@ Page({
             } catch (cloudErr) {
               console.error('更新云数据库trips失败:', cloudErr);
               // 降级使用本地存储，不中断流程
-              wx.showToast({ title: '云端保存失败，仅本地保存', icon: 'none', duration: 3000 });
+              const errMsg = cloudErr.errMsg || cloudErr.message || '未知错误';
+              wx.showToast({ title: `云端保存失败: ${errMsg}`, icon: 'none', duration: 3000 });
             }
             
             // 3. 重新加载活动显示
