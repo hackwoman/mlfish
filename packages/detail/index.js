@@ -487,11 +487,25 @@ Page({
 
   // 编辑活动安排（仅管理员）
   // 编辑按钮 - 弹出活动模板选择或手动编辑
-  editTitle() {
+  async editTitle() {
     const that = this;
     
-    // 获取活动模板列表
-    const templates = wx.getStorageSync('activityTemplates') || [];
+    // 从云数据库获取活动模板列表
+    let templates = [];
+    try {
+      const db = app.getDB();
+      const res = await db.collection('activityTemplates').get();
+      templates = res.data.map(item => {
+        return {
+          ...item,
+          id: item._id
+        };
+      });
+    } catch (err) {
+      console.error('从云数据库加载模板失败:', err);
+      // 降级使用本地存储
+      templates = wx.getStorageSync('activityTemplates') || [];
+    }
     
     if (templates.length === 0) {
       // 没有模板，直接手动编辑
